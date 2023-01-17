@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter ,Route,Routes } from "react-router-dom";
 import BookTaxi from './pages/bookTaxi/bookTaxi';
 import './App.css';
+import PageFooter from './pages/pageFooter/pageFooter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path='/' element={<BookTaxi />} />
         </Routes>
       </BrowserRouter>
+      <PageFooter/>
     </>
   );
 }

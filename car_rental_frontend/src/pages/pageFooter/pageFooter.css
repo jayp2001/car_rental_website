@@ -1,0 +1,23 @@
+.footerWrapper {
+    padding: 30px;
+}
+
+.footerHeader {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.footerContaintHeader {
+    margin-bottom: 10px;
+    font-weight: 200;
+}
+
+.footerContaint {
+    font-weight: 200;
+}
+
+.socialMediaPageIconWrapper {
+    margin-top: 30px;
+}
