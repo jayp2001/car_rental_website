@@ -6,7 +6,7 @@ function Navbar() {
       <div className="grid content-center h-full">
         <div className="navLink">
           <NavLink
-            to="/"
+            to="http://jayp2001.github.io/car_rental_website/"
             style={({ isActive }) => ({
               color: isActive ? "black" : "#757474",
             })}

@@ -15,7 +15,7 @@ function CarDetail() {
   console.log(carData);
   const navigate = useNavigate();
   const handleClickBook = () => {
-    const url = `/bookCar/${carData.id}`;
+    const url = `http://jayp2001.github.io/car_rental_website/bookCar/${carData.id}`;
     navigate(url);
   };
   return (
