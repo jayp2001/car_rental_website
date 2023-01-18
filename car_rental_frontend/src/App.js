@@ -14,9 +14,9 @@ function App() {
       <BrowserRouter>
       <Navbar/>
         <Routes>
+          <Route path='/' element={<Carlist />} />
           <Route path='/bookCar/:id' element={<BookTaxi />} />
           <Route path='/carDetail/:id' element={<CarDetail />} />
-          <Route path='/' element={<Carlist />} />
         </Routes>
       </BrowserRouter>
       <PageFooter/>
