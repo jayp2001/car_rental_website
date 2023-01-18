@@ -11,11 +11,11 @@ function CarDetailCard(carData) {
   }, []);
   const navigate = useNavigate();
   const handleClickDetail = () => {
-    const url = `/cardetail/${data.id}`;
+    const url = `car_rental_website/cardetail/${data.id}`;
     navigate(url);
   };
   const handleClickBook = () => {
-    const url = `/bookCar/${data.id}`;
+    const url = `car_rental_website/bookCar/${data.id}`;
     navigate(url);
   };
   if (!data) return null;
