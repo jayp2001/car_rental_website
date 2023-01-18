@@ -13,7 +13,7 @@ function Carlist() {
           <div className="col-span-10 col-start-2">
             <div className="grid grid-cols-12 listHeaderWrapper">
               <div className="col-span-3"></div>
-              <div className="col-span-4 listHeader">Car details</div>
+              <div className="col-span-3 listHeader">Car details</div>
               <div className="col-span-2 listHeader">Rent Per Day</div>
               <div className="col-span-3"></div>
             </div>

@@ -5,15 +5,18 @@ import './App.css';
 import PageFooter from './pages/pageFooter/pageFooter';
 import CarDetail from './pages/carDetailPage/carDetail';
 import Carlist from './pages/carList/carList';
+import Navbar from './pages/navBar/navBar';
 
 function App() {
   return (
     <>
+      
       <BrowserRouter>
+      <Navbar/>
         <Routes>
-          <Route path='/' element={<BookTaxi />} />
-          <Route path='/carDetail' element={<CarDetail />} />
-          <Route path='/carList' element={<Carlist />} />
+          <Route path='/bookCar/:id' element={<BookTaxi />} />
+          <Route path='/carDetail/:id' element={<CarDetail />} />
+          <Route path='/' element={<Carlist />} />
         </Routes>
       </BrowserRouter>
       <PageFooter/>
