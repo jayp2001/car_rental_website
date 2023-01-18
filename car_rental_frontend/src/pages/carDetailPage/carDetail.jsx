@@ -1,28 +1,45 @@
 import "./carDetail.css";
-import { useState } from "react";
-import carImg from "../../assets/image/carImg1.png";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
 import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
 import ColorizeIcon from "@mui/icons-material/Colorize";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import { carListStatic } from "../../assets/staticData/carList";
+import { URL } from "../../assets/staticData/url";
 function CarDetail() {
-  const [status, setStatus] = useState(false);
+  const { id } = useParams();
+  const [carData, setCarData] = useState(
+    carListStatic.filter((car) => car.id == id)[0]
+  );
+  console.log(carData);
+  const navigate = useNavigate();
+  const handleClickBook = () => {
+    const url = `/bookCar/${carData.id}`;
+    navigate(url);
+  };
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-8 col-start-3">
         <div className="grid grid-cols-12 carImgWrapper">
           <div className="col-span-7">
             <div className="carImg">
-              <img className="image" src={carImg} />
+              <img
+                className="image"
+                src={`${URL}image/${carData.car_image}.png`}
+              />
             </div>
           </div>
           <div className="col-span-5 carDetailWrapper">
-            <div className="carName">Hyundai Grand i10</div>
+            <div className="carName">{carData.car_name}</div>
             <div className="grid grid-cols-12 carShortDetailWrapper">
               <div className="col-span-3 carShortDetail">
-                <ColorizeIcon style={{ fontSize: "15px" }} /> White
+                <ColorizeIcon style={{ fontSize: "15px" }} />{" "}
+                {carData.car_color}
               </div>
               <div className="col-span-3 carShortDetail">
-                <AirlineSeatReclineNormalIcon style={{ fontSize: "15px" }} /> 4
+                <AirlineSeatReclineNormalIcon style={{ fontSize: "15px" }} />{" "}
+                {carData.car_seat_capicity}
                 Seater
               </div>
             </div>
@@ -30,15 +47,24 @@ function CarDetail() {
               Rent per day :
               <span className="rentPrice">
                 <CurrencyRupeeIcon style={{ fontSize: "22px" }} />
-                350
+                {carData.rent_per_day}
               </span>
             </div>
             <div className="bookbtnWrapper flex">
-              <button className={`bookBtn ${status ? "" : "disableBtn"}`}>
+              <button
+                className={`bookBtn ${
+                  carData.car_available_status ? "" : "disableBtn"
+                }`}
+                onClick={carData.car_available_status ? handleClickBook : null}
+              >
                 Book Now
               </button>
               <div className="grid content-end">
-                <span className={`alertMsg ${status ? "hidden" : ""}`}>
+                <span
+                  className={`alertMsg ${
+                    carData.car_available_status ? "hidden" : ""
+                  }`}
+                >
                   &nbsp;&nbsp; Currently unavailable!
                 </span>
               </div>
@@ -53,24 +79,15 @@ function CarDetail() {
           <div className="carDetailContentWrapper">
             <div
               className={`carStatusDisplay ${
-                status ? "activeStatus" : "disabledStatus"
+                carData.car_available_status ? "activeStatus" : "disabledStatus"
               }`}
             >
-              {status ? "Availbale" : "Not Available"}
+              {carData.car_available_status ? "Availbale" : "Not Available"}
             </div>
-            <div className="carDetailText">Vehicle Number: 18 D 4356</div>
-            <div className="carDetailText">Petrol Car</div>
-            <div className="carDetailText">
-              1.2 Kappa Dual VTVT BS6 Petrol Engine
-            </div>
-            <div className="carDetailText">
-              Hyundai GRAND i10 NIOS comes with Wonder Warranty options of upto
-              5 years Std. Customer can choose any warranty option as per his
-              driving requirement at the time of new vehicle delivery. From a
-              strong body structure to Standard Dual airbags and ABS with EBD,
-              maximum care has been taken to integrate a plethora of safety
-              features
-            </div>
+            <div className="carDetailText">{carData.car_number}</div>
+            <div className="carDetailText">{carData.car_varient}</div>
+            <div className="carDetailText">{carData.car_engine_detail}</div>
+            <div className="carDetailText">{carData.car_other_information}</div>
           </div>
         </div>
         <div className="carCurrentCarBooking">
@@ -85,10 +102,18 @@ function CarDetail() {
             <div className="col-span-3 listHeader">RETURN DATE</div>
           </div>
           <div className="grid grid-cols-12 mt-6">
-            <div className="col-span-3 listContent">Jon Doe</div>
-            <div className="col-span-3 listContent">+91 7905654483</div>
-            <div className="col-span-3 listContent">25/01/2020</div>
-            <div className="col-span-3 listContent">28/01/2020</div>
+            <div className="col-span-3 listContent">
+              {carData.current_booking_detail.name}
+            </div>
+            <div className="col-span-3 listContent">
+              {carData.current_booking_detail.phone_number}
+            </div>
+            <div className="col-span-3 listContent">
+              {carData.current_booking_detail.car_issue_date}
+            </div>
+            <div className="col-span-3 listContent">
+              {carData.current_booking_detail.car_return_date}
+            </div>
           </div>
         </div>
       </div>

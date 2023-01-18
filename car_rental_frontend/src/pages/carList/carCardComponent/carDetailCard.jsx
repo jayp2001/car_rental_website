@@ -1,33 +1,40 @@
 import "./carDetailCard.css";
 import { useNavigate } from "react-router-dom";
-import carImg from "../../../assets/image/carImg1.png";
 import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
 import ColorizeIcon from "@mui/icons-material/Colorize";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useState } from "react";
-function CarDetailCard() {
-  const [status, setStatus] = useState(false);
+import { useState, useEffect } from "react";
+function CarDetailCard(carData) {
+  const [data, setData] = useState();
+  useEffect(() => {
+    setData(carData.carData);
+  }, []);
   const navigate = useNavigate();
-
   const handleClickDetail = () => {
-    navigate("/cardetail");
+    const url = `/cardetail/${data.id}`;
+    navigate(url);
   };
-
+  const handleClickBook = () => {
+    const url = `/bookCar/${data.id}`;
+    navigate(url);
+  };
+  if (!data) return null;
   return (
-    <div className="grid grid-cols-12 carDetailCardCaontainer">
+    <div className="grid grid-cols-12 carDetailCardCaontainer" key={data.id}>
       <div className="col-span-2">
-        <img className="image" src={carImg} />
+        <img className="image" src={`image/${data.car_image}.png`} />
       </div>
       <div></div>
       <div className="col-span-3">
         <div className="grid content-center h-full detailWrapper">
-          <div className="carName">Hyundai Grand i10</div>
+          <div className="carName">{data.car_name}</div>
           <div className="grid grid-cols-12 carShortDetailWrapper">
             <div className="col-span-5 carShortDetail">
-              <ColorizeIcon style={{ fontSize: "15px" }} /> White
+              <ColorizeIcon style={{ fontSize: "15px" }} /> {data.car_color}
             </div>
             <div className="col-span-5 carShortDetail">
-              <AirlineSeatReclineNormalIcon style={{ fontSize: "15px" }} /> 4
+              <AirlineSeatReclineNormalIcon style={{ fontSize: "15px" }} />{" "}
+              {data.car_seat_capicity}
               Seater
             </div>
           </div>
@@ -37,7 +44,7 @@ function CarDetailCard() {
         <div className="grid content-center h-full  text-center">
           <span className="rentPrice">
             <CurrencyRupeeIcon style={{ fontSize: "22px" }} />
-            350
+            {data.rent_per_day}
           </span>
         </div>
       </div>
@@ -45,14 +52,21 @@ function CarDetailCard() {
       <div className="col-span-4">
         <div className="grid content-center pl-6 h-full">
           <div className="flex justify-around">
-            <button className={`bookBtn ${status ? "" : "disableBtn"}`}>
+            <button
+              className={`bookBtn ${
+                data.car_available_status ? "" : "disableBtn"
+              }`}
+              onClick={data.car_available_status ? handleClickBook : null}
+            >
               Book Now
             </button>
             <button className="datailBtn" onClick={handleClickDetail}>
               Details
             </button>
           </div>
-          <span className={`alertMsg ${status ? "hidden" : ""}`}>
+          <span
+            className={`alertMsg ${data.car_available_status ? "hidden" : ""}`}
+          >
             &nbsp;&nbsp; Currently unavailable!
           </span>
         </div>

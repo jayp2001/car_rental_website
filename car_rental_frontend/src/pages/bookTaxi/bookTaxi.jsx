@@ -1,5 +1,7 @@
 import "./bookTaxi.css";
 import { useState } from "react";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -8,8 +10,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import modalImg from "../../assets/image/confirmationModalImg.png";
-import bookingPageImg from "../../assets/image/bookCarPageImg.png";
+import { carListStatic } from "../../assets/staticData/carList";
+import { URL } from "../../assets/staticData/url";
 function BookTaxi() {
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
@@ -43,14 +45,24 @@ function BookTaxi() {
   const handleClose = () => {
     setOpenModal(false);
   };
-
+  const { id } = useParams();
+  const [carData, setCarData] = useState(
+    carListStatic.filter((car) => car.id == id)[0]
+  );
   const [open, setOpen] = useState(false);
   const [openReturn, setOpenReturn] = useState(false);
+
+  const navigate = useNavigate();
+  const handleClickBack = () => {
+    const url = `/`;
+    navigate(url);
+  };
+
   return (
     <div className="grid grid-rows-1 min-h-screen">
       <div className="grid grid-cols-12 h-full">
         <div className="col-span-3 imagelogo h-full">
-          <img src={bookingPageImg} className="modalImg" />
+          <img src={`${URL}image/bookCarPageImg.png`} className="modalImg" />
         </div>
         <div className=" grid col-span-9 formField content-center">
           <div className=" grid grid-rows-1">
@@ -159,7 +171,10 @@ function BookTaxi() {
                   </div>
                 </div>
                 <div className="grid grid-cols-12 formFielsWrapper">
-                  <div className="col-span-3 backBtn inline-block align-middle">
+                  <div
+                    className="col-span-3 backBtn inline-block align-middle"
+                    onClick={handleClickBack}
+                  >
                     Back
                   </div>
                   <div className="col-span-3 col-start-9">
@@ -188,7 +203,10 @@ function BookTaxi() {
             <DialogContentText id="alert-dialog-description">
               <div className="grid grid-cols-12 confirmModal">
                 <div className="col-span-4">
-                  <img src={modalImg} className="modalImg"></img>
+                  <img
+                    src={`${URL}image/confirmationModalImg.png`}
+                    className="modalImg"
+                  ></img>
                 </div>
                 <div className="col-span-8">
                   <div className="confirmMessage">
@@ -198,13 +216,13 @@ function BookTaxi() {
                     <div className="confirmMessageDetails">
                       <div className="messageDescription">
                         You have booked &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                        <span className="detailOfCar"> Hyundai Grand i10</span>
+                        <span className="detailOfCar"> {carData.car_name}</span>
                       </div>
                       <div className="messageDescription">
                         From the duration &nbsp;&nbsp;&nbsp;&nbsp;{" "}
                         <span className="detailOfCar">
                           {" "}
-                          02/04/2020 - 05/04/2020
+                          {formData.issueDate} - {formData.returnDate}
                         </span>
                       </div>
                     </div>
