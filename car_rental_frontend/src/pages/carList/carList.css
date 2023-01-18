@@ -1,0 +1,26 @@
+.carDetailHeader {
+    color: #697b90;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.hrLine {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border: 0.5px solid #697b90;
+}
+
+.carListContainer {
+    padding-top: 100px !important;
+}
+
+.listHeaderWrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.listHeader {
+    font-size: 14px;
+    font-weight: 600;
+    color: #697b90;
+}

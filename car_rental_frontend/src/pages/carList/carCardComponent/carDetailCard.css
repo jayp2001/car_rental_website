@@ -1,0 +1,49 @@
+.carDetailCardCaontainer {
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 80px;
+}
+
+.carName {
+    font-size: 14px;
+}
+
+.carShortDetailWrapper {
+    margin-top: 5px;
+}
+
+.carShortDetail {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.rentPrice {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.bookBtn {
+    font-size: 14px;
+    /* float: left; */
+    background-color: #757474;
+    height: fit-content;
+    width: fit-content;
+    font-weight: 500;
+    padding: 8px 15px 8px 15px;
+}
+
+.disableBtn {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.datailBtn {
+    font-size: 14px;
+    color: #697b90;
+    background-color: #f8f8f8;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 8px 15px 8px 15px;
+}

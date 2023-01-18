@@ -4,7 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 function PageFooter() {
   return (
-    <div className="grid grid-cols-12">
+    <div className="grid grid-cols-12 footer">
       <div className="col-span-5 footerWrapper">
         <div className="footerHeader">Rent Vroom</div>
         <div className="footerContaintHeader">Rentvroom Pvt. Ltd.</div>
