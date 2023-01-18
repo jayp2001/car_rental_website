@@ -54,7 +54,7 @@ function BookTaxi() {
 
   const navigate = useNavigate();
   const handleClickBack = () => {
-    const url = `http://jayp2001.github.io/car_rental_website/`;
+    const url = `/`;
     navigate(url);
   };
 

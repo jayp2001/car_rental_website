@@ -11,11 +11,11 @@ function CarDetailCard(carData) {
   }, []);
   const navigate = useNavigate();
   const handleClickDetail = () => {
-    const url = `http://jayp2001.github.io/car_rental_website/cardetail/${data.id}`;
+    const url = `/cardetail/${data.id}`;
     navigate(url);
   };
   const handleClickBook = () => {
-    const url = `http://jayp2001.github.io/car_rental_website/bookCar/${data.id}`;
+    const url = `/bookCar/${data.id}`;
     navigate(url);
   };
   if (!data) return null;
