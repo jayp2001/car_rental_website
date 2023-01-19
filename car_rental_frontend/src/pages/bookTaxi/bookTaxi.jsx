@@ -56,7 +56,7 @@ function BookTaxi() {
 
   const navigate = useNavigate();
   const handleClickBack = () => {
-    const url = `/`;
+    const url = `/car_rental_website`;
     navigate(url);
   };
 
