@@ -15,7 +15,7 @@ function CarDetail() {
   console.log(carData);
   const navigate = useNavigate();
   const handleClickBook = () => {
-    const url = `car_rental_website/bookCar/${carData.id}`;
+    const url = `/bookCar/${carData.id}`;
     navigate(url);
   };
   return (
@@ -24,10 +24,7 @@ function CarDetail() {
         <div className="grid grid-cols-12 carImgWrapper">
           <div className="col-span-7">
             <div className="carImg">
-              <img
-                className="image"
-                src={`${URL}image/${carData.car_image}.png`}
-              />
+              <img className="image" src={carData.car_image} />
             </div>
           </div>
           <div className="col-span-5 carDetailWrapper">

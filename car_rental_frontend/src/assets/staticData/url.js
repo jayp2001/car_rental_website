@@ -1,1 +1,1 @@
-export const URL = "http://jayp2001.github.io/car_rental_website";
+export const URL = "http://localhost:3000/";

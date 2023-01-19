@@ -4,6 +4,7 @@ import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatRecline
 import ColorizeIcon from "@mui/icons-material/Colorize";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useState, useEffect } from "react";
+import { URL } from "../../../assets/staticData/url";
 function CarDetailCard(carData) {
   const [data, setData] = useState();
   useEffect(() => {
@@ -21,8 +22,8 @@ function CarDetailCard(carData) {
   if (!data) return null;
   return (
     <div className="grid grid-cols-12 carDetailCardCaontainer" key={data.id}>
-      <div className="col-span-2">
-        <img className="image" src={`image/${data.car_image}.png`} />
+      <div className="col-span-2 imgWrapper">
+        <img className="image" src={data.car_image} />
       </div>
       <div></div>
       <div className="col-span-3">

@@ -47,3 +47,13 @@
     font-weight: 500;
     padding: 8px 15px 8px 15px;
 }
+.image {
+    height: 100%;
+    width: 85%;
+    margin-left: 10%;
+}
+
+.imgWrapper {
+    /* height: 100%; */
+    overflow: hidden;
+}

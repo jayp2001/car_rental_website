@@ -12,6 +12,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { carListStatic } from "../../assets/staticData/carList";
 import { URL } from "../../assets/staticData/url";
+import bookCarPageImg from "../../assets/image/bookCarPageImg.png";
+import confirmationModalImg from "../../assets/image/confirmationModalImg.png";
 function BookTaxi() {
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
@@ -54,7 +56,7 @@ function BookTaxi() {
 
   const navigate = useNavigate();
   const handleClickBack = () => {
-    const url = `/`;
+    const url = `/car_rental_website`;
     navigate(url);
   };
 
@@ -62,7 +64,7 @@ function BookTaxi() {
     <div className="grid grid-rows-1 min-h-screen">
       <div className="grid grid-cols-12 h-full">
         <div className="col-span-3 imagelogo h-full">
-          <img src={`${URL}image/bookCarPageImg.png`} className="modalImg" />
+          <img src={bookCarPageImg} className="modalImg" />
         </div>
         <div className=" grid col-span-9 formField content-center">
           <div className=" grid grid-rows-1">
@@ -203,10 +205,7 @@ function BookTaxi() {
             <DialogContentText id="alert-dialog-description">
               <div className="grid grid-cols-12 confirmModal">
                 <div className="col-span-4">
-                  <img
-                    src={`${URL}image/confirmationModalImg.png`}
-                    className="modalImg"
-                  ></img>
+                  <img src={confirmationModalImg} className="modalImg"></img>
                 </div>
                 <div className="col-span-8">
                   <div className="confirmMessage">
