@@ -11,12 +11,12 @@ function App() {
   return (
     <>
       
-      <BrowserRouter>
+      <BrowserRouter basename="http://jayp2001.github.io/car_rental_website">
       <Navbar/>
         <Routes>
-          <Route path='/car_rental_website' element={<Carlist />} />
-          <Route path='/car_rental_website/bookCar/:id' element={<BookTaxi />} />
-          <Route path='/car_rental_website/carDetail/:id' element={<CarDetail />} />
+          <Route path='/' element={<Carlist />} />
+          <Route path='/bookCar/:id' element={<BookTaxi />} />
+          <Route path='/carDetail/:id' element={<CarDetail />} />
         </Routes>
       </BrowserRouter>
       <PageFooter/>
