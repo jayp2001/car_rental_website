@@ -221,13 +221,13 @@ function BookTaxi() {
                   <div className="col-span-3 col-start-9">
                     <button
                       className={`bookBtn ${
-                        formData.name.length > 3 &&
+                        formData.name.length > 2 &&
                         formData.phone_number.length == 10
                           ? ""
                           : "disableBtn"
                       }`}
                       onClick={
-                        formData.name.length > 3 &&
+                        formData.name.length > 2 &&
                         formData.phone_number.length == 10
                           ? handleClickOpen
                           : null
@@ -238,7 +238,7 @@ function BookTaxi() {
                     <div>
                       <span
                         className={`alertMsg ${
-                          formData.name.length > 3 &&
+                          formData.name.length > 2 &&
                           formData.phone_number.length == 10
                             ? "hidden"
                             : ""
