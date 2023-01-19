@@ -14,10 +14,19 @@ import { carListStatic } from "../../assets/staticData/carList";
 import { URL } from "../../assets/staticData/url";
 import bookCarPageImg from "../../assets/image/bookCarPageImg.png";
 import confirmationModalImg from "../../assets/image/confirmationModalImg.png";
+
+import { useSelector, useDispatch } from "react-redux";
+import { bookCar } from "../../action";
+
 function BookTaxi() {
+  const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+  console.log(">>>>>", counter);
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
     returnDate: new Date().toISOString().slice(0, 10),
+    name: "",
+    phone_number: "",
   });
   const handleIssueDateChange = (date) => {
     setFormData((prevState) => ({
@@ -32,6 +41,18 @@ function BookTaxi() {
     }));
   };
 
+  const handleOnChangeFormData = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleOnClickContinue = () => {
+    const url = `/car_rental_website`;
+    navigate(url);
+  };
+
   const onCloseDatePicker = () => {
     setTimeout(() => {
       document.activeElement.blur();
@@ -41,6 +62,16 @@ function BookTaxi() {
   const [openModal, setOpenModal] = useState(false);
 
   const handleClickOpen = () => {
+    const updateData = {
+      id: carData.id,
+      car_issue_date: formData.issueDate,
+      car_return_date: formData.returnDate,
+      name: formData.name,
+      phone_number: formData.phone_number,
+    };
+
+    dispatch(bookCar(updateData));
+
     setOpenModal(true);
   };
 
@@ -59,7 +90,6 @@ function BookTaxi() {
     const url = `/car_rental_website`;
     navigate(url);
   };
-
   return (
     <div className="grid grid-rows-1 min-h-screen">
       <div className="grid grid-cols-12 h-full">
@@ -80,8 +110,13 @@ function BookTaxi() {
                       id="standard-basic"
                       label="Name"
                       fullWidth
+                      onChange={handleOnChangeFormData}
+                      value={formData.name}
                       variant="standard"
                       placeholder="joe"
+                      type=""
+                      name="name"
+                      // inputProps={{ pattern: "[a-z]" }}
                       inputProps={{ style: { fontSize: 20 } }}
                       InputLabelProps={{ style: { fontSize: 20 } }}
                     />
@@ -91,6 +126,10 @@ function BookTaxi() {
                       id="standard-basic"
                       label="Contact number"
                       fullWidth
+                      type="number"
+                      onChange={handleOnChangeFormData}
+                      name="phone_number"
+                      value={formData.phone_number}
                       variant="standard"
                       inputProps={{ style: { fontSize: 20 } }}
                       InputLabelProps={{ style: { fontSize: 20 } }}
@@ -181,11 +220,33 @@ function BookTaxi() {
                   </div>
                   <div className="col-span-3 col-start-9">
                     <button
-                      className="bookBtn btnDisabled"
-                      onClick={handleClickOpen}
+                      className={`bookBtn ${
+                        formData.name.length > 3 &&
+                        formData.phone_number.length == 10
+                          ? ""
+                          : "disableBtn"
+                      }`}
+                      onClick={
+                        formData.name.length > 3 &&
+                        formData.phone_number.length == 10
+                          ? handleClickOpen
+                          : null
+                      }
                     >
                       Book Car
                     </button>
+                    <div>
+                      <span
+                        className={`alertMsg ${
+                          formData.name.length > 3 &&
+                          formData.phone_number.length == 10
+                            ? "hidden"
+                            : ""
+                        }`}
+                      >
+                        &nbsp;&nbsp; Complete all field properly!
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,7 +288,10 @@ function BookTaxi() {
                     </div>
                   </div>
                   <div className="flex justify-end">
-                    <button onClick={handleClose} className="modalActionBtn">
+                    <button
+                      onClick={(handleClose, handleOnClickContinue)}
+                      className="modalActionBtn"
+                    >
                       Continue
                     </button>
                   </div>
