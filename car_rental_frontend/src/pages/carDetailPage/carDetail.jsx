@@ -7,11 +7,11 @@ import ColorizeIcon from "@mui/icons-material/Colorize";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { carListStatic } from "../../assets/staticData/carList";
 import { URL } from "../../assets/staticData/url";
+import { useSelector, useDispatch } from "react-redux";
 function CarDetail() {
+  const data = useSelector((state) => state.carData);
   const { id } = useParams();
-  const [carData, setCarData] = useState(
-    carListStatic.filter((car) => car.id == id)[0]
-  );
+  const [carData, setCarData] = useState(data.filter((car) => car.id == id)[0]);
   const navigate = useNavigate();
   const handleClickBook = () => {
     const url = `/bookCar/${carData.id}`;

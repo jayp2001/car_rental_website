@@ -2,9 +2,11 @@ import CarDetailCard from "./carCardComponent/carDetailCard";
 import "./carList.css";
 import { useState } from "react";
 import { carListStatic } from "../../assets/staticData/carList";
+import { useSelector, useDispatch } from "react-redux";
 
 function Carlist() {
-  const [carData, setCarData] = useState(carListStatic);
+  const data = useSelector((state) => state.carData);
+  const [carData, setCarData] = useState(data);
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-10 col-start-2 carListContainer">

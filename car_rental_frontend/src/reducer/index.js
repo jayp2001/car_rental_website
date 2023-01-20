@@ -2,7 +2,7 @@ import carDataReducer from "./carData";
 import {combineReducers} from "redux";
 
 const allReducers = combineReducers ({
-    counter: carDataReducer,
+    carData: carDataReducer,
 });
 
 export default allReducers;

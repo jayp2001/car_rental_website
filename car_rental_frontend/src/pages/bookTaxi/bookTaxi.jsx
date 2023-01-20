@@ -20,7 +20,7 @@ import { bookCar } from "../../action";
 
 function BookTaxi() {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter);
+  const carDataFatched = useSelector((state) => state.carData);
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
     returnDate: new Date().toISOString().slice(0, 10),
@@ -90,13 +90,6 @@ function BookTaxi() {
     const url = `/car_rental_website`;
     navigate(url);
   };
-
-  function disablePrevDates(startDate) {
-    const startSeconds = Date.parse(startDate);
-    return (date) => {
-      return Date.parse(date) < startSeconds;
-    };
-  }
 
   return (
     <div className="grid grid-rows-1 min-h-screen">
