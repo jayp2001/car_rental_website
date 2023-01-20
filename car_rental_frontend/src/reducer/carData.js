@@ -6,14 +6,12 @@ const initialState = carListStatic;
 const changeData = (currentState,update) => {
     const data = currentState;
     const idOfData = update.id;
-    // console.log("<><>",currentState[0].id)
     var indexof;
     currentState.map((data,index)=>{
         if(data.id == idOfData){
             indexof = index;
         }
     })
-    // console.log(">>>><<<",indexof)
     data[indexof].car_available_status = false;
     data[indexof].car_issue_date = update.car_issue_date;
     data[indexof].car_return_date = update.car_return_date;

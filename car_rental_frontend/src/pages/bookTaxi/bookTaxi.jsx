@@ -21,7 +21,6 @@ import { bookCar } from "../../action";
 function BookTaxi() {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
-  console.log(">>>>>", counter);
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
     returnDate: new Date().toISOString().slice(0, 10),
@@ -32,6 +31,7 @@ function BookTaxi() {
     setFormData((prevState) => ({
       ...prevState,
       ["issueDate"]: new Date(date).toISOString().slice(0, 10),
+      ["returnDate"]: new Date(date).toISOString().slice(0, 10),
     }));
   };
   const handleReturnDateChange = (date) => {
@@ -90,6 +90,14 @@ function BookTaxi() {
     const url = `/car_rental_website`;
     navigate(url);
   };
+
+  function disablePrevDates(startDate) {
+    const startSeconds = Date.parse(startDate);
+    return (date) => {
+      return Date.parse(date) < startSeconds;
+    };
+  }
+
   return (
     <div className="grid grid-rows-1 min-h-screen">
       <div className="grid grid-cols-12 h-full">
@@ -126,8 +134,13 @@ function BookTaxi() {
                       id="standard-basic"
                       label="Contact number"
                       fullWidth
+                      // inputProps={{ maxLength: 12 }}
                       type="number"
-                      onChange={handleOnChangeFormData}
+                      onChange={
+                        formData.phone_number.length < 10
+                          ? handleOnChangeFormData
+                          : null
+                      }
                       name="phone_number"
                       value={formData.phone_number}
                       variant="standard"
@@ -164,6 +177,7 @@ function BookTaxi() {
                         InputLabelProps={{ style: { fontSize: 20 } }}
                         label="Issue Date"
                         required
+                        disablePast={true}
                         inputFormat="YYYY/MM/DD"
                         value={new Date(formData.issueDate)}
                         onChange={handleIssueDateChange}
@@ -194,6 +208,12 @@ function BookTaxi() {
                         InputLabelProps={{ style: { fontSize: 20 } }}
                         label="Return Date"
                         required
+                        // shouldDisableDate={disablePrevDates(formData.issueDate)}
+                        shouldDisableDate={(date) =>
+                          new Date(date).getTime() <
+                          new Date(formData.issueDate).getTime() -
+                            1 * 24 * 60 * 60 * 1000
+                        }
                         inputFormat="YYYY/MM/DD"
                         value={new Date(formData.returnDate)}
                         onChange={handleReturnDateChange}

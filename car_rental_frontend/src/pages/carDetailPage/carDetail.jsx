@@ -12,7 +12,6 @@ function CarDetail() {
   const [carData, setCarData] = useState(
     carListStatic.filter((car) => car.id == id)[0]
   );
-  console.log(carData);
   const navigate = useNavigate();
   const handleClickBook = () => {
     const url = `/bookCar/${carData.id}`;
