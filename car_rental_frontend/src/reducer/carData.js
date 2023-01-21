@@ -3,7 +3,7 @@ import types from "../types";
 
 // const initialState = carListStatic;
 
-export const carDataReducer = (state = {loading:false,cardata:[],error:''},action) =>{
+export const carDataReducer = (state = {loading:false,cardata:[],carDataById:[],error:''},action) =>{
     switch(action.type){
         case types.carListRequest:
             return { loading: true }
@@ -20,7 +20,7 @@ export const carDataReducer = (state = {loading:false,cardata:[],error:''},actio
         case types.carListByIdRequest:
             return { loading: true }
         case types.carListByIdSuccess:
-            return { loading: false, cardata: action.payload };
+            return { loading: false, carDataById: action.payload };
         case types.carListByIdFail:
             return { loading: false, error: action.payload };
         default:
@@ -28,3 +28,16 @@ export const carDataReducer = (state = {loading:false,cardata:[],error:''},actio
 
     }
 }
+
+// export const carDataById = (state = {loading:false,cardata:[],error:''},action) =>{
+//     switch(action.type){
+//         case types.carListByIdRequest:
+//             return { loading: true }
+//         case types.carListByIdSuccess:
+//             return { loading: false, cardata: action.payload };
+//         case types.carListByIdFail:
+//             return { loading: false, error: action.payload };
+//         default:
+//             return state;
+//     }
+// }
