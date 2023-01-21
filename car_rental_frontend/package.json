@@ -1,5 +1,5 @@
 {
-  "homepage": "http://jayp2001.github.io/car_rental_website/",
+  "homepage": ".",
   "name": "car_rental_frontend",
   "version": "0.1.0",
   "private": true,
@@ -13,7 +13,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.2.2",
+    "axios": "^1.2.3",
     "dayjs": "^1.11.7",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
@@ -22,6 +22,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

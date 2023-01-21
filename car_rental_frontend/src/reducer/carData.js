@@ -1,40 +1,30 @@
 
-import { carListStatic } from "../assets/staticData/carList";
+import types from "../types";
 
-const initialState = carListStatic;
+// const initialState = carListStatic;
 
-const changeData = (currentState,update) => {
-    const data = currentState;
-    const idOfData = update.id;
-    var indexof;
-    currentState.map((data,index)=>{
-        if(data.id == idOfData){
-            indexof = index;
-        }
-    })
-    data[indexof].car_available_status = false;
-    data[indexof].car_issue_date = update.car_issue_date;
-    data[indexof].car_return_date = update.car_return_date;
-    data[indexof].current_booking_detail.name = update.name;
-    data[indexof].current_booking_detail.phone_number = update.phone_number;
-    data[indexof].current_booking_detail.car_issue_date = update.car_issue_date;
-    data[indexof].current_booking_detail.car_return_date = update.car_return_date;
-    return data;
-    
-}
-
-const carDataReducer = (state = initialState,action) =>{
+export const carDataReducer = (state = {loading:false,cardata:[],error:''},action) =>{
     switch(action.type){
-        case 'BOOK_CAR':
-            // state[0].car_name='jay'
-            // return state;
-            return changeData(state,action.payload)
-        case 'DECREMENT':
-            return state-1;
-            default:
-      return state;
+        case types.carListRequest:
+            return { loading: true }
+        case types.carListSuccess:
+            return { loading: false, cardata: action.payload };
+        case types.carListFail:
+            return { loading: false, error: action.payload };
+        case types.bookDetailUpdateRequest:
+            return { loading: true }
+        case types.bookDetailUpdateSuccess:
+            return { loading: false, };
+        case types.bookDetailUpdateFail:
+            return { loading: false, error: action.payload };
+        case types.carListByIdRequest:
+            return { loading: true }
+        case types.carListByIdSuccess:
+            return { loading: false, cardata: action.payload };
+        case types.carListByIdFail:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
 
     }
 }
-
-export default carDataReducer;

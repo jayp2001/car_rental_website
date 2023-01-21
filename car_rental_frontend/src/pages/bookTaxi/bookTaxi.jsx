@@ -20,7 +20,8 @@ import { bookCar } from "../../action";
 
 function BookTaxi() {
   const dispatch = useDispatch();
-  const carDataFatched = useSelector((state) => state.carData);
+  const _id = useParams().id;
+  // const carDataFatched = useSelector((state) => state.carData);
   const [formData, setFormData] = useState({
     issueDate: new Date().toISOString().slice(0, 10),
     returnDate: new Date().toISOString().slice(0, 10),
@@ -63,11 +64,11 @@ function BookTaxi() {
 
   const handleClickOpen = () => {
     const updateData = {
-      id: carData.id,
-      car_issue_date: formData.issueDate,
-      car_return_date: formData.returnDate,
-      name: formData.name,
-      phone_number: formData.phone_number,
+      _id:'63cc17c35f28ab8262270423',
+      name:formData.name,
+      phone_number:formData.phone_number,
+      car_issue_date:new Date(formData.issueDate),
+      car_return_date:new Date("10/26/2022"),
     };
 
     dispatch(bookCar(updateData));
@@ -289,7 +290,7 @@ function BookTaxi() {
                     <div className="confirmMessageDetails">
                       <div className="messageDescription">
                         You have booked &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                        <span className="detailOfCar"> {carData.car_name}</span>
+                        <span className="detailOfCar"> {"jay"}</span>
                       </div>
                       <div className="messageDescription">
                         From the duration &nbsp;&nbsp;&nbsp;&nbsp;{" "}

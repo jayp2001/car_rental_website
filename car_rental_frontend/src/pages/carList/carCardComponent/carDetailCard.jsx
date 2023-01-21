@@ -12,16 +12,16 @@ function CarDetailCard(carData) {
   }, []);
   const navigate = useNavigate();
   const handleClickDetail = () => {
-    const url = `/cardetail/${data.id}`;
+    const url = `/cardetail/${data._id}`;
     navigate(url);
   };
   const handleClickBook = () => {
-    const url = `/bookCar/${data.id}`;
+    const url = `/bookCar/${data._id}`;
     navigate(url);
   };
   if (!data) return null;
   return (
-    <div className="grid grid-cols-12 carDetailCardCaontainer" key={data.id}>
+    <div className="grid grid-cols-12 carDetailCardCaontainer" key={data._id}>
       <div className="col-span-2 imgWrapper">
         <img className="image" src={data.car_image} />
       </div>
