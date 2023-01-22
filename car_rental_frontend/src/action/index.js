@@ -57,6 +57,13 @@ export const getDataById = (_id)=> async(dispatch) =>{
         });
         const { data } = await axios.get(`${URL}/car/getById/?_id=${_id}`);
     
+        if(data && data.current_booking_detail && data.current_booking_detail.car_issue_date && data.current_booking_detail.car_return_date){
+          const issueDate = new Date(data.current_booking_detail.car_issue_date).toJSON().slice(0, 10);
+          const returnDate = new Date(data.current_booking_detail.car_return_date).toJSON().slice(0, 10);
+          data.current_booking_detail.car_issue_date = issueDate;
+          data.current_booking_detail.car_return_date = returnDate
+        }
+
         dispatch({
           type: types.carListByIdSuccess,
           payload: data,
