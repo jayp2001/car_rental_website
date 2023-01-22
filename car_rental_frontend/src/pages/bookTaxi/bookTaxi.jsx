@@ -290,7 +290,7 @@ function BookTaxi() {
                     <div className="confirmMessageDetails">
                       <div className="messageDescription">
                         You have booked &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                        <span className="detailOfCar"> {"jay"}</span>
+                        <span className="detailOfCar"> {formData.name}</span>
                       </div>
                       <div className="messageDescription">
                         From the duration &nbsp;&nbsp;&nbsp;&nbsp;{" "}
