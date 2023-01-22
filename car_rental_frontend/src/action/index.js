@@ -1,13 +1,14 @@
 import types from '../types';
 import axios from "axios";
+import {URL} from './const'
 
 export const bookCar = (updatedData) => async(dispatch) =>{
     try {
         dispatch({
           type: types.bookDetailUpdateRequest,
         });
-    
-        const { data } = await axios.post('http://localhost:3600/car/addBookingDetail',updatedData);
+        
+        const { data } = await axios.post(`${URL}/car/addBookingDetail`,updatedData);
     
         dispatch({
           type: types.bookDetailUpdateSuccess,
@@ -31,7 +32,7 @@ export const getCarList= () => async(dispatch) =>{
           type: types.carListRequest,
         });
     
-        const { data } = await axios.get('http://localhost:3600/car/get/');
+        const { data } = await axios.get(`${URL}/car/get/`);
     
         dispatch({
           type: types.carListSuccess,
@@ -54,7 +55,7 @@ export const getDataById = (_id)=> async(dispatch) =>{
         dispatch({
           type: types.carListByIdRequest,
         });
-        const { data } = await axios.get(`http://localhost:3600/car/getById/?_id=${_id}`);
+        const { data } = await axios.get(`${URL}/car/getById/?_id=${_id}`);
     
         dispatch({
           type: types.carListByIdSuccess,
