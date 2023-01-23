@@ -8,6 +8,8 @@ const types = {
     carListByIdRequest : 'CAR_LIST_BY_ID_REQUEST',
     carListByIdSuccess : 'CAR_LIST_BY_ID_SUCCESS',
     carListByIdFail : 'CAR_LIST_BY_ID_FAIL',
+    getBookedCar:'GET_BOOKED_CAR',
+    deleteBooking:'DELETE_BOOKING'
 }
 
 export default types;

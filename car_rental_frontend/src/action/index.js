@@ -80,3 +80,26 @@ export const getDataById = (_id)=> async(dispatch) =>{
       }
 };
 
+export const getBookedCar = () => async(dispatch) =>{
+  var { data } = await axios.get(`${URL}/car/get/`);
+  data = data.filter((obj) => obj.current_booking_detail.name != null)
+  dispatch({
+    type: types.getBookedCar,
+    payload: data ? data : [],
+  });
+}
+
+export const deleteBooking = (_id) => async(dispatch)=>{
+  var { data } = await axios.get(`${URL}/car/deleteBookingDetails/?_id=${_id}`);
+  console.log(data);
+  // getBookedCar();
+  var { data } = await axios.get(`${URL}/car/get/`);
+  data = data.filter((obj) => obj.current_booking_detail.name != null)
+  console.log(data);
+  dispatch({
+    type: types.getBookedCar,
+    payload: data ? data : [],
+  }
+  )
+}
+

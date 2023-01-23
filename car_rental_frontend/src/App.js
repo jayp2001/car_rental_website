@@ -6,6 +6,7 @@ import PageFooter from './pages/pageFooter/pageFooter';
 import CarDetail from './pages/carDetailPage/carDetail';
 import Carlist from './pages/carList/carList';
 import Navbar from './pages/navBar/navBar';
+import DeleteTaxiBooking from './pages/deleteTaxiBooking/deleteTaxiBooking';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Navbar/>
         <Routes>
           <Route path='/car_rental_website' element={<Carlist />} />
+          <Route path='/rentedCarList' element={<DeleteTaxiBooking />} />
           <Route path='/bookCar/:id' element={<BookTaxi />} />
           <Route path='/carDetail/:id' element={<CarDetail />} />
         </Routes>

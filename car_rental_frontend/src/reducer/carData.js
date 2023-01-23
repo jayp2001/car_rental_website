@@ -3,7 +3,7 @@ import types from "../types";
 
 // const initialState = carListStatic;
 
-export const carDataReducer = (state = {loading:false,cardata:[],carDataById:[],error:''},action) =>{
+export const carDataReducer = (state = {loading:false,cardata:[],bookedCar:[],carDataById:[],error:''},action) =>{
     switch(action.type){
         case types.carListRequest:
             return { loading: true }
@@ -23,6 +23,10 @@ export const carDataReducer = (state = {loading:false,cardata:[],carDataById:[],
             return { loading: false, carDataById: action.payload };
         case types.carListByIdFail:
             return { loading: false, error: action.payload };
+        case types.getBookedCar:
+            return {bookedCar:action.payload}
+        case types.deleteBooking:
+            return {bookedCar:action.payload}
         default:
             return state;
 
