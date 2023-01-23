@@ -91,11 +91,8 @@ export const getBookedCar = () => async(dispatch) =>{
 
 export const deleteBooking = (_id) => async(dispatch)=>{
   var { data } = await axios.get(`${URL}/car/deleteBookingDetails/?_id=${_id}`);
-  console.log(data);
-  // getBookedCar();
   var { data } = await axios.get(`${URL}/car/get/`);
   data = data.filter((obj) => obj.current_booking_detail.name != null)
-  console.log(data);
   dispatch({
     type: types.getBookedCar,
     payload: data ? data : [],

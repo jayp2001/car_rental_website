@@ -18,9 +18,7 @@ function Carlist() {
   const dispatch = useDispatch();
   const dataList = useSelector((state) => isDelete ? state.carData.bookedCar : state.carData.cardata);
 
-  console.log(">>", dataList)
   var cardata = dataList
-  console.log(cardata)
   useEffect(() => {
     if (location.pathname === "/car_rental_website") {
       dispatch(getCarList());
@@ -34,7 +32,6 @@ function Carlist() {
     if (window.confirm("Are You sure You want to delete booking....!")) {
       dispatch(deleteBooking(_id));
     }
-    console.log(">>")
   }
 
   if (!cardata) {

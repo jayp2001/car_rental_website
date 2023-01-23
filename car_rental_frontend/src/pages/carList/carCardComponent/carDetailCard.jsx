@@ -36,7 +36,6 @@ function CarDetailCard(props) {
   //   dispatch(deleteBooking(_id));
   // }
 
-  console.log(isDelete);
   if (!data) return null;
   return (
     <div className="grid grid-cols-12 carDetailCardCaontainer" key={data._id}>
