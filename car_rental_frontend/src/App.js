@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter ,Route,Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import BookTaxi from './pages/bookTaxi/bookTaxi';
 import './App.css';
 import PageFooter from './pages/pageFooter/pageFooter';
@@ -11,17 +11,17 @@ import DeleteTaxiBooking from './pages/deleteTaxiBooking/deleteTaxiBooking';
 function App() {
   return (
     <>
-      
-      <BrowserRouter >
-      <Navbar/>
+
+      <HashRouter >
+        <Navbar />
         <Routes>
           <Route path='/car_rental_website' element={<Carlist />} />
           <Route path='/rentedCarList' element={<DeleteTaxiBooking />} />
           <Route path='/bookCar/:id' element={<BookTaxi />} />
           <Route path='/carDetail/:id' element={<CarDetail />} />
         </Routes>
-      </BrowserRouter>
-      <PageFooter/>
+      </HashRouter>
+      <PageFooter />
     </>
   );
 }
